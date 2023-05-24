@@ -1,4 +1,4 @@
 package com.example.cookiy
 
-class SharedViewModel {
+class MainViewModel {
 }
