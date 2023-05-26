@@ -30,14 +30,6 @@ class MainViewModel : ViewModel() {
 
     fun loadData() {
         viewModelScope.launch {
-            _loading.value = ApiStatus.LOADING
-            try {
-                repository.getImages()
-                _loading.value = ApiStatus.DONE
-            } catch (e: Exception) {
-                Log.e(TAG, "Error loading data from api: $e")
-                _loading.value = ApiStatus.ERROR
-            }
         }
     }
 }

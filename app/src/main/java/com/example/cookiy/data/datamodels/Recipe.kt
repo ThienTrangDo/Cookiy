@@ -6,8 +6,10 @@ import com.squareup.moshi.Json
 
 
 data class Recipe (
-   val id: Long,
+   val id: Int,
    val name: String,
-   val image: String
+   val image: String,
+   val ingredients: List<String>,
+   val steps: List<String>
     )
 
