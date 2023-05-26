@@ -2,9 +2,8 @@ package com.example.cookiy.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.cookiy.data.remote.RecipeApi
 import kotlinx.coroutines.delay
-
-const val TAG = "AppRepository"
 
 class AppRepository (private val api: RecipeApi) {
 

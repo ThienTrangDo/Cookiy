@@ -1,5 +1,6 @@
 package com.example.cookiy.data.remote
 
+import com.example.cookiy.data.datamodels.RecipeImages
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -23,4 +24,6 @@ interface ApiService {
     suspend fun getImages(): RecipeImages
 }
 
-object Rec
+object RecipeApi {
+    val retrofitService: ApiService by lazy { retrofit.create(ApiService::class.java) }
+}

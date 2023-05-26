@@ -4,12 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
-@Entity
+
 data class Recipe (
-
-    @PrimaryKey
-    @Json(name = "idRezept")
-    val id: Long,
-
+   val id: Long,
+   val name: String,
+   val image: String
     )
 
