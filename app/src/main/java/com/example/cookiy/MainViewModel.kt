@@ -46,7 +46,7 @@ class MainViewModel : ViewModel() {
     val loading: LiveData<ApiStatus>
         get() = _loading
 
-    val images = repository.imageList
+    val imageList = repository.imageList
 
     //wird ausgeführt wenn ein Instanz/Objekt von der Klasse MainViewModel erstellt wird
     init {
