@@ -46,7 +46,6 @@ class MainViewModel : ViewModel() {
     val loading: LiveData<ApiStatus>
         get() = _loading
 
-    val imageList = repository.imageList
 
     //wird ausgeführt wenn ein Instanz/Objekt von der Klasse MainViewModel erstellt wird
     init {
@@ -62,7 +61,7 @@ class MainViewModel : ViewModel() {
             // hat das loading funktioniert trycatch damit die App nicht abbricht
             try {
                 //funktion getimages wird ausgeführt
-                repository.getImages()
+                repository.getRecipe()
                 //wenn es funktioniert hat, setzt den loading wert auf done
                 _loading.value = ApiStatus.DONE
             } catch (e:Exception) {

@@ -11,7 +11,6 @@ import coil.load
 import com.example.cookiy.R
 import com.example.cookiy.data.datamodels.Recipe
 
-//todo prüfen list recipe/String
 class ItemAdapter(val dataset: List<Recipe>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>(){
 
     //class ItemViewHolder(val binding: ListRecipeBinding) : RecyclerView.ViewHolder(binding.root)
@@ -19,7 +18,7 @@ class ItemAdapter(val dataset: List<Recipe>) : RecyclerView.Adapter<ItemAdapter.
     //viewholder weiß welche Teile des layouts beim recycling angepasst werden
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val nameTV = view.findViewById<TextView>(R.id.recipe_text)
-        val detailNameTV = view.findViewById<TextView>(R.id.textViewRezeptname)
+        // val detailNameTV = view.findViewById<TextView>(R.id.textViewRezeptname)
         val ingredientsTV = view.findViewById<TextView>(R.id.tvZutaten)
         val stepsTV = view.findViewById<TextView>(R.id.tvInstructionsList)
         val imageView = view.findViewById<ImageView>(R.id.recipe_image)
@@ -42,14 +41,14 @@ class ItemAdapter(val dataset: List<Recipe>) : RecyclerView.Adapter<ItemAdapter.
 
         val recipe = dataset[position]
 
-        val imgUri = recipe.toUri().buildUpon().scheme("https").build()
+        val imgUri = recipe.image.toUri().buildUpon().scheme("https").build()
 
         holder.imageView.load(imgUri)
 
         holder.nameTV.text = recipe.name
-        holder.detailNameTV.text = recipe.name
-        holder.ingredientsTV.text = recipe.ingredients
-        holder.stepsTV.text = recipe.steps
+        //holder.detailNameTV.text = recipe.name
+        //holder.ingredientsTV.text = recipe.ingredients
+        //holder.stepsTV.text = recipe.steps
         }
 
     override fun getItemCount(): Int {
