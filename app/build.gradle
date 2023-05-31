@@ -57,14 +57,12 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
-    implementation "com.squareup.moshi:moshi-kotlin:1.13.0"
+
+    //moshi ist ein Konverter um Serverantworten in KotlinObjekte zu übersetzen
+    implementation "com.squareup.moshi:moshi-kotlin:1.14.0"
 
     // Coil
-    implementation "io.coil-kt:coil:1.1.1"
+    implementation "io.coil-kt:coil:2.2.2"
 
-    // Room Dependencies
-    implementation "androidx.room:room-runtime:2.4.2"
-    kapt "androidx.room:room-compiler:2.4.2"
-    implementation "androidx.room:room-ktx:2.4.2"
 
 }
