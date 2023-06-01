@@ -30,9 +30,6 @@ interface RecipeApiService {
     @GET("Trang/data.json")
     suspend fun getRecipes(): List<Recipe>
 
-    @GET("images/VanillaCupcake.jpg")
-    suspend fun getImages(): List<Recipe>
-
 }
 
 //dient als Zugangspunkt für den Rest der App und stellt das Interface als retrofitservice zur Verfügung
