@@ -3,6 +3,8 @@ package com.example.cookiy.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.cookiy.R
+import com.example.cookiy.data.datamodels.Favorite
 import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.data.remote.RecipeApi
 import kotlinx.coroutines.delay
@@ -20,4 +22,22 @@ class AppRepository (private val api: RecipeApi) {
             Log.d("Repository", "API Call failed: $e")
         }
     }
+
+
+    private val _favoriteList = MutableLiveData<List<Favorite>>()
+    val favoriteList: LiveData<List<Favorite>>
+        get() = _favoriteList
+    fun loadFavorite(){
+        val favoriteList = listOf<Favorite>(
+            Favorite(1, R.drawable.burgerbg),
+            Favorite(2, R.drawable.dessertbg),
+            Favorite(3, R.drawable.drinksbg),
+            Favorite(4, R.drawable.kuchenbg),
+            Favorite(5, R.drawable.pastabg),
+            Favorite(6, R.drawable.vegetarischbg)
+        )
+        _favoriteList.value = favoriteList
+
+    }
+
 }
