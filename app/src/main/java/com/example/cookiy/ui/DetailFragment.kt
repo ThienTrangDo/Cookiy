@@ -5,19 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import coil.load
+import com.example.cookiy.MainViewModel
 import com.example.cookiy.R
 import com.example.cookiy.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
-   private var id = 0
+   private var name = ""
    private lateinit var binding: FragmentDetailBinding
+   private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            id = arguments?.get("id").toString().toInt()
+            name = arguments?.getString("name")!!
         }
     }
 
@@ -36,5 +41,17 @@ class DetailFragment : Fragment() {
         binding.backButton.setOnClickListener {
             binding.backButton.findNavController().navigateUp()
         }
+
+        val recipe = viewModel.recipes.value!!.find { it.name == name }
+
+        binding.tvZutatenliste.text = recipe!!.ingredients
+
+        val url = "https://public.syntax-institut.de/apps/batch6/Trang/images/" + recipe.image
+
+        val imgUri = url.toUri().buildUpon().scheme("https").build()
+
+        binding.ivRecipeImage.load(imgUri)
+        binding.textViewRezeptname.text = recipe!!.name
+        binding.tvInstructionsList.text = recipe!!.steps
     }
 }

@@ -1,11 +1,13 @@
 package com.example.cookiy.data.datamodels
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
+@Entity (tableName = "recipe_table")
 data class Recipe (
-   val id: Int = 0,
 
-
+   @PrimaryKey
    @Json(name = "Rezeptname")
    val name: String,
 
@@ -20,6 +22,5 @@ data class Recipe (
 
    @Json(name= "Zubereitung ")
    val steps: String
-
     )
 

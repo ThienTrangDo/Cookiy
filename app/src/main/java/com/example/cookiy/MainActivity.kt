@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //API Rezepte
-        viewModel.recipe.observe(this) {
+        viewModel.recipes.observe(this) {
             findViewById<RecyclerView>(R.id.rvRezepte).adapter = ItemAdapter(it)
             Log.d("Error", it.toString())
         }

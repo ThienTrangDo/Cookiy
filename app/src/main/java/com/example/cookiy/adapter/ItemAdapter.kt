@@ -23,13 +23,9 @@ class ItemAdapter(
     private val dataset: List<Recipe>
     ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>(){
 
-    //class ItemViewHolder(val binding: ListRecipeBinding) : RecyclerView.ViewHolder(binding.root)
-
     //viewholder weiß welche Teile des layouts beim recycling angepasst werden
-    class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTV = view.findViewById<TextView>(R.id.recipe_text)
-
-
         val recipeCardview: ConstraintLayout = view.findViewById(R.id.item_layout)
         val detailNameTV = view.findViewById<TextView>(R.id.textViewRezeptname)
         val ingredientsTV = view.findViewById<TextView>(R.id.tvZutaten)
@@ -67,17 +63,12 @@ class ItemAdapter(
 
         holder.imageView.load(imgUri)
 
-        //todo
         holder.recipeCardview.setOnClickListener {
-            holder.view.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.id))
+            holder.itemView.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.name))
         }
 
        //todo Kategorien
-
-        //holder.detailNameTV.text = recipe.name
-        //holder.ingredientsTV.text = recipe.ingredients
-        //holder.stepsTV.text = recipe.steps
     }
 }
 
