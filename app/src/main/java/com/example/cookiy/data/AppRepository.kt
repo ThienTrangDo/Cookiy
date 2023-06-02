@@ -4,10 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.cookiy.R
-import com.example.cookiy.data.datamodels.Favorite
+import com.example.cookiy.data.datamodels.Kategorien
 import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.data.remote.RecipeApi
-import kotlinx.coroutines.delay
 
 class AppRepository (private val api: RecipeApi) {
 
@@ -24,19 +23,19 @@ class AppRepository (private val api: RecipeApi) {
     }
 
 
-    private val _favoriteList = MutableLiveData<List<Favorite>>()
-    val favoriteList: LiveData<List<Favorite>>
-        get() = _favoriteList
+    private val _kategorienList = MutableLiveData<List<Kategorien>>()
+    val kategorienList: LiveData<List<Kategorien>>
+        get() = _kategorienList
     fun loadFavorite(){
-        val favoriteList = listOf<Favorite>(
-            Favorite(1, R.drawable.burgerbg),
-            Favorite(2, R.drawable.dessertbg),
-            Favorite(3, R.drawable.drinksbg),
-            Favorite(4, R.drawable.kuchenbg),
-            Favorite(5, R.drawable.pastabg),
-            Favorite(6, R.drawable.vegetarischbg)
+        val kategorienLists = listOf<Kategorien>(
+            Kategorien(1, R.drawable.burgerbg),
+            Kategorien(2, R.drawable.dessertbg),
+            Kategorien(3, R.drawable.drinksbg),
+            Kategorien(4, R.drawable.kuchenbg),
+            Kategorien(5, R.drawable.pastabg),
+            Kategorien(6, R.drawable.vegetarischbg)
         )
-        _favoriteList.value = favoriteList
+        _kategorienList.value = kategorienLists
 
     }
 

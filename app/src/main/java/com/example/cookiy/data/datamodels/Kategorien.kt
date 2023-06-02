@@ -1,6 +1,6 @@
 package com.example.cookiy.data.datamodels
 
-class Favorite (
+class Kategorien (
     val id: Long,
     val cover: Int
         )
