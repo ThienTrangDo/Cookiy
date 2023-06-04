@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name = "category_mapping">
+        <item>@drawable/burgerbg</item>
+        <item>Burger</item>
+
+        <item>@drawable/vegetarischbg</item>
+        <item>Vegetarisch</item>
+
+        <item>@drawable/pastabg</item>
+        <item></item>
+
+
+    </array>
+
+
+</resources>

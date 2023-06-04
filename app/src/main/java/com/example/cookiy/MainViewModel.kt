@@ -70,4 +70,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    val category = repository.categoryList
 }

@@ -21,6 +21,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/category_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/burgerbg"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#A4000000"/>
+
             <TextView
                 android:id="@+id/category_text"
                 android:layout_width="wrap_content"
@@ -28,6 +40,8 @@
                 android:textColor="#F6F2F2"
                 android:textSize="18dp"
                 android:textStyle="bold"
+                android:padding="10dp"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

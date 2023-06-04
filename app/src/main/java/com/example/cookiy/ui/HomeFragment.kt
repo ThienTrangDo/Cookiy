@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.cookiy.ApiStatus
 import com.example.cookiy.MainViewModel
+import com.example.cookiy.R
+import com.example.cookiy.adapter.CategoryAdapter
 import com.example.cookiy.adapter.ItemAdapter
 import com.example.cookiy.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-
     private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -30,6 +30,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.category.observe(viewLifecycleOwner){ category ->
+            binding.rvKategorie.adapter = CategoryAdapter(requireContext(),category)
+        }
 
         viewModel.recipes.observe(
             viewLifecycleOwner,

@@ -2,4 +2,11 @@
     <string name="app_name">Cookiy</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="burger">Burger</string>
+    <string name="pasta">Pasta</string>
+    <string name="vegetarisch">Vegetarisch</string>
+    <string name="dessert">Dessert</string>
+    <string name="drinks">Drinks</string>
+    <string name="kuchen">Kuchen</string>
 </resources>
