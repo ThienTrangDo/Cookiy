@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/imageButton_teilen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="76dp"
@@ -50,14 +50,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/imageButton_favorit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/white"
             android:src="@drawable/outline_favorite_border_24"
-            app:layout_constraintStart_toEndOf="@+id/imageButton3"
+            app:layout_constraintStart_toEndOf="@+id/imageButton_teilen"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView

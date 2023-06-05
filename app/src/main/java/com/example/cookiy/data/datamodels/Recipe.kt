@@ -21,6 +21,7 @@ data class Recipe (
 
 
    @Json(name= "Zubereitung ")
-   val steps: String
+   val steps: String,
+
     )
 

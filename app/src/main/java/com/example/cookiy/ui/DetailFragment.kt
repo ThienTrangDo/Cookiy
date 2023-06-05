@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.NotificationCompat.getColor
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -12,6 +15,7 @@ import androidx.navigation.findNavController
 import coil.load
 import com.example.cookiy.MainViewModel
 import com.example.cookiy.R
+import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -53,5 +57,9 @@ class DetailFragment : Fragment() {
         binding.ivRecipeImage.load(imgUri)
         binding.textViewRezeptname.text = recipe!!.name
         binding.tvInstructionsList.text = recipe!!.steps
+
+        //Favoriten
+
     }
+
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.cookiy.data.AppRepository
+import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.data.remote.RecipeApi
 import kotlinx.coroutines.launch
 
@@ -72,4 +73,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     val category = repository.categoryList
+
 }

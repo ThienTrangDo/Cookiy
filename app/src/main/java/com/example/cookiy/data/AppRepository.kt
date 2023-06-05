@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.cookiy.R
 import com.example.cookiy.data.datamodels.Category
+import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.data.local.RecipeDatabase.Companion.getDatabase
 import com.example.cookiy.data.remote.RecipeApi
 
@@ -27,15 +28,16 @@ class AppRepository (private val api: RecipeApi, private val application: Applic
     }
 
 
+
     private val _categoryList = MutableLiveData<List<Category>>()
     val categoryList: LiveData<List<Category>>
         get() = _categoryList
 
     init {
-        loadFood()
+        loadCategory()
     }
 
-    fun loadFood(){
+    fun loadCategory(){
         val categoryList = listOf<Category>(
             Category(
                 1,
