@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.cookiy.R
 import com.example.cookiy.data.datamodels.Category
-import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.data.local.RecipeDatabase.Companion.getDatabase
 import com.example.cookiy.data.remote.RecipeApi
 
@@ -17,6 +16,8 @@ class AppRepository (private val api: RecipeApi, private val application: Applic
 
     val recipes = database.recipeDatabaseDao.getAllRecipes()
 
+    //todo neu
+
 
     //es wird versucht eine Liste an Rezepten über retrofit zu laden und als LiveData bereitzustellen
     suspend fun getRecipe() {
@@ -26,7 +27,6 @@ class AppRepository (private val api: RecipeApi, private val application: Applic
             Log.d("Repository", "API Call failed: $e")
         }
     }
-
 
 
     private val _categoryList = MutableLiveData<List<Category>>()

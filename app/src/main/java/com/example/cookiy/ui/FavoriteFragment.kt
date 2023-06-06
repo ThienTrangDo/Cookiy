@@ -13,7 +13,6 @@ import com.example.cookiy.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment() {
 
-    private var id = 0
     private lateinit var binding: FragmentFavoriteBinding
 
     private val viewModel: MainViewModel by activityViewModels()

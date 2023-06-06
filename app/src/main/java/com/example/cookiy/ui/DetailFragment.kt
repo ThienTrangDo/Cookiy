@@ -58,7 +58,8 @@ class DetailFragment : Fragment() {
         binding.textViewRezeptname.text = recipe!!.name
         binding.tvInstructionsList.text = recipe!!.steps
 
-        //Favoriten
+        //todo Favoriten
+
 
     }
 
