@@ -51,12 +51,13 @@
 
         <ImageButton
             android:id="@+id/imageButton_favorit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="3dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/outline_favorite_border_24"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:src="@drawable/heart_unfilled_480"
             app:layout_constraintStart_toEndOf="@+id/imageButton_teilen"
             app:layout_constraintTop_toTopOf="parent" />
 

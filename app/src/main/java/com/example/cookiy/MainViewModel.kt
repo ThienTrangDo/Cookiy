@@ -14,7 +14,8 @@ const val TAG = "MainViewModel"
 //spezielle Klasse, innerhalb dieser Klasse können beschränkt werte vorliegen
 enum class ApiStatus{ LOADING, ERROR, DONE }
 
-//erbt vom Viewmodel
+/*erbt vom Androidviewmodel, wird verwendet um daten für die benutzeroberfläche bereitzustellen
+und die Interaktion mit dem Repository zu koordinieren*/
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     //erzeugt ein objekt von repository
@@ -23,6 +24,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     //laden livedata aus dem repository
     val recipes = repository.recipes
+
+    val favorites = repository.favorites
+
+    //todo neu
+
 
     init {
         loadRecipe()
@@ -34,6 +40,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             repository.getRecipe()
         }
     }
+
+    //todo Favorite
+
+    fun insertFavorite(favoriteName: String){
+        viewModelScope.launch {
+            repository.insertFavorite(favoriteName)
+        }
+    }
+
+    fun deleteFavorite(favoriteName: String){
+        viewModelScope.launch {
+            repository.deleteFavorite(favoriteName)
+        }
+    }
+
+//    fun countFavorite(favoriteName: String): Boolean{
+//        viewModelScope.launch {
+//            return repository.countFavorite(favoriteName)
+//        }
+//    }
+
 
 
     //API CALL für die Bilder

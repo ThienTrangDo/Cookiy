@@ -6,27 +6,27 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+//Hier werden Daten aus der Api abgerufen
 
-//das ist die adresse von der API
+//Basis Url der Api, von der die Daten abgerufen werden
 const val BASE_URL = "https://public.syntax-institut.de/apps/batch6/"
-
-//empfangen daten aus dem Internet, und wird mit retrofit übersetzt
 
 //um Antworten direkt zu übersetzen
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
-//retrofit wird gebaut mit moshi und baseurl
+//empfangen daten aus dem Internet, und wird mit retrofit übersetzt
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addConverterFactory(MoshiConverterFactory.create(moshi))   //moshi als JSON Konverter
     .baseUrl(BASE_URL)
     .build()
 
 //bestimmt wie mit dem Server kommuniziert wird
 interface RecipeApiService {
 
-    //Get Request am Endpunkt recipe welcher eine Rezepteliste zurückliefert
+    //gibt eine Liste von Recipe Objekten zurück
+    //@Get definiert den Endpunkt der Api und den Weg zur Json
     @GET("Trang/data.json")
     suspend fun getRecipes(): List<Recipe>
 
@@ -36,3 +36,6 @@ interface RecipeApiService {
 object RecipeApi {
     val retrofitService: RecipeApiService by lazy { retrofit.create(RecipeApiService::class.java) }
 }
+
+//Nun kann man RecipeApi.retrofitService instamz verwenden um die gewünschten Daten von der Api abzurufen
+//Bsp RecipeApi.retrofitService.getRecipes() um Liste der Rezepte von der API abzurufen

@@ -15,13 +15,16 @@ import androidx.navigation.findNavController
 import coil.load
 import com.example.cookiy.MainViewModel
 import com.example.cookiy.R
+import com.example.cookiy.data.datamodels.Favorite
 import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
+
    private var name = ""
    private lateinit var binding: FragmentDetailBinding
    private val viewModel: MainViewModel by activityViewModels()
+   var favoriteState = listOf<Favorite>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +61,26 @@ class DetailFragment : Fragment() {
         binding.textViewRezeptname.text = recipe!!.name
         binding.tvInstructionsList.text = recipe!!.steps
 
+
+        try {
+            favoriteState = viewModel.favorites.value!!.filter { it.recipeName == recipe.name }!!
+        } catch (e: Exception){}
+
         //todo Favoriten
+       /* if (favoriteState!!.isNotEmpty()){
+            binding.imageButtonFavorit.setImageResource(R.drawable.heart_filled_480)
+        } else {
+            binding.imageButtonFavorit.setImageResource(R.drawable.heart_unfilled_480)
+        }*/
 
-
+        binding.imageButtonFavorit.setOnClickListener {
+            if (favoriteState!!.isNotEmpty()) {
+                viewModel.deleteFavorite(recipe.name)
+                binding.imageButtonFavorit.setImageResource(R.drawable.heart_unfilled_480)
+            } else {
+                viewModel.insertFavorite(recipe.name)
+                binding.imageButtonFavorit.setImageResource(R.drawable.heart_filled_480)
+            }
+        }
     }
-
 }
