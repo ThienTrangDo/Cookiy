@@ -1,6 +1,7 @@
 package com.example.cookiy.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,16 +16,16 @@ import androidx.navigation.findNavController
 import coil.load
 import com.example.cookiy.MainViewModel
 import com.example.cookiy.R
+import com.example.cookiy.TAG
 import com.example.cookiy.data.datamodels.Favorite
 import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
 
-   private var name = ""
-   private lateinit var binding: FragmentDetailBinding
-   private val viewModel: MainViewModel by activityViewModels()
-   var favoriteState = listOf<Favorite>()
+    private var name = ""
+    private lateinit var binding: FragmentDetailBinding
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,25 +62,25 @@ class DetailFragment : Fragment() {
         binding.textViewRezeptname.text = recipe!!.name
         binding.tvInstructionsList.text = recipe!!.steps
 
+        var favoriteState = viewModel.checkFavorite(recipe.name)
 
-        try {
-            favoriteState = viewModel.favorites.value!!.filter { it.recipeName == recipe.name }!!
-        } catch (e: Exception){}
-
-        //todo Favoriten
-       /* if (favoriteState!!.isNotEmpty()){
+        if(favoriteState == 1) {
             binding.imageButtonFavorit.setImageResource(R.drawable.heart_filled_480)
-        } else {
+        }else if(favoriteState == 0) {
             binding.imageButtonFavorit.setImageResource(R.drawable.heart_unfilled_480)
-        }*/
+        }
 
         binding.imageButtonFavorit.setOnClickListener {
-            if (favoriteState!!.isNotEmpty()) {
+            if(favoriteState == 1) {
                 viewModel.deleteFavorite(recipe.name)
                 binding.imageButtonFavorit.setImageResource(R.drawable.heart_unfilled_480)
-            } else {
+                favoriteState = 0
+
+
+            }else if(favoriteState == 0) {
                 viewModel.insertFavorite(recipe.name)
                 binding.imageButtonFavorit.setImageResource(R.drawable.heart_filled_480)
+                favoriteState = 1
             }
         }
     }

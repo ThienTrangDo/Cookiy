@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.cookiy.data.AppRepository
-import com.example.cookiy.data.datamodels.Recipe
+import com.example.cookiy.data.datamodels.Favorite
 import com.example.cookiy.data.remote.RecipeApi
 import kotlinx.coroutines.launch
 
@@ -25,10 +25,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     //laden livedata aus dem repository
     val recipes = repository.recipes
 
-    val favorites = repository.favorites
+    fun getAllFavorites() : List<Favorite> {
+        return repository.getAllFavorites()
+    }
 
     //todo neu
-
+    fun checkFavorite(favName: String) : Int {
+        return repository.checkFavorite(favName)
+    }
 
     init {
         loadRecipe()
@@ -54,13 +58,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             repository.deleteFavorite(favoriteName)
         }
     }
-
-//    fun countFavorite(favoriteName: String): Boolean{
-//        viewModelScope.launch {
-//            return repository.countFavorite(favoriteName)
-//        }
-//    }
-
 
 
     //API CALL für die Bilder

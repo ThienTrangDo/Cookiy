@@ -10,7 +10,6 @@ import com.example.cookiy.data.datamodels.Favorite
 import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.data.local.RecipeDatabase.Companion.getDatabase
 import com.example.cookiy.data.remote.RecipeApi
-
 //Verwaltung der Daten, Abrufs von Rezepten über die Api,
 //Speicherung der Rezepte in der lokalen Datenbank und Bereitstellung von Kategorien für die Benutzeroberfläche
 
@@ -25,10 +24,12 @@ class AppRepository (private val api: RecipeApi, private val application: Applic
     //getAllRecipes um die Rezepte abzurufen
     val recipes = database.recipeDatabaseDao.getAllRecipes()
 
-    var favorites = database.recipeDatabaseDao.getAllFavorites()
+    fun getAllFavorites() : List<Favorite> {
+        return database.recipeDatabaseDao.getAllFavorites()
+    }
 
-    init {
-        favorites = database.recipeDatabaseDao.getAllFavorites()
+    fun checkFavorite(favName: String) : Int {
+        return database.recipeDatabaseDao.checkFavorite(favName)
     }
 
     //es wird versucht eine Liste an Rezepten über api zu laden und in die Datenbank einzufügen
@@ -44,7 +45,7 @@ class AppRepository (private val api: RecipeApi, private val application: Applic
 
     suspend fun insertFavorite(favoriteName: String){
         try {
-            var favorite = Favorite(0, favoriteName)
+            var favorite = Favorite(favoriteName)
             database.recipeDatabaseDao.insertFavorite(favorite)
         } catch (e: Exception) {
             Log.d("Repository","Fehler vom Erstellen von Favorite /n  ${e.message}")
@@ -59,20 +60,6 @@ class AppRepository (private val api: RecipeApi, private val application: Applic
         }
     }
 
-//    suspend fun countFavorite(favoriteName: String):Boolean {
-//        var resultBoolean= false
-//        try {
-//            var result = database.recipeDatabaseDao.countFavorite(favoriteName)
-//            if (result == 0){
-//                resultBoolean = false
-//            } else if (result == 1){
-//                resultBoolean = true
-//            } else resultBoolean = false
-//        } catch (e: Exception){
-//            Log.d("Repository", "Fehler beim Favoriten zählen")
-//        }
-//        return resultBoolean
-//    }
 
 
     //MutableLiveData speichert Kategorie Liste ab

@@ -22,16 +22,16 @@ interface RecipeDatabaseDao {
     fun getAllRecipes(): LiveData<List<Recipe>>
 
     @Query("Select * From favorite_table")
-    fun getAllFavorites(): LiveData<List<Favorite>>
+    fun getAllFavorites(): List<Favorite>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("Select count(*) From favorite_table where recipeName = :favName")
+    fun checkFavorite(favName: String): Int
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertFavorite(favorite: Favorite)
 
     @Query("Delete From favorite_table Where recipeName = :favoriteName")
     suspend fun deleteFavorite(favoriteName: String)
-
-   /* @Query("Select count(*) from favorite_table where recipeName like :favoriteName")
-    suspend fun countFavorite(favoriteName: String):Int*/
 }
 
 //SQL ist eine Anweisung um Daten aus einer Datenbank abzurufen, zu aktualisieren, einzufügen oder zu löschen

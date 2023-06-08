@@ -29,7 +29,8 @@ abstract class RecipeDatabase: RoomDatabase() {
                         context.applicationContext,
                         RecipeDatabase::class.java,
                         "recipe_table"
-                    ).build()
+                    ).allowMainThreadQueries()      //todo neu
+                        .build()
                 }
             }
             return dbInstance                                   //Datenbankinstanz wird an die Klasse zurückgegeben

@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookiy.adapter.ItemAdapter
 import com.example.cookiy.databinding.ActivityMainBinding
@@ -16,9 +17,9 @@ class MainActivity : AppCompatActivity() {
 
     //stellt den viewmodel zur verfügung
     private val viewModel: MainViewModel by viewModels()
+
     private lateinit var navController: NavController
 
-    //binding wird benutzt
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = binding.bottomNavBar
 
         setupWithNavController(bottomNavigationView, navController)
-
 
         //API Rezepte
         viewModel.recipes.observe(this) {
