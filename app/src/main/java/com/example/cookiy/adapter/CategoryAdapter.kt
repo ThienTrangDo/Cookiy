@@ -8,6 +8,8 @@ import com.example.cookiy.R
 import com.example.cookiy.data.datamodels.Category
 import com.example.cookiy.databinding.ListCategoryBinding
 
+//Hier wird eine Liste von Kategorien in einem Recyclerview angezeigt
+
 class CategoryAdapter (
     private val context: Context,
     private val categoryList: List<Category>

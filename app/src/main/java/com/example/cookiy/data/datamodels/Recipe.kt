@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
+//definiert ein Rezeptobjekt, welches in einer datenbanktabelle gespeichert werden kann
 @Entity (tableName = "recipe_table")
 data class Recipe (
 
@@ -21,7 +22,9 @@ data class Recipe (
 
 
    @Json(name= "Zubereitung ")
-   val steps: String,
+   val steps: String
+
+   //json name = um json schlüsselnamen anzugeben mit denen die entsprechenden daten verknüpft sind
 
     )
 

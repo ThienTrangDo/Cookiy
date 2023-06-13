@@ -29,7 +29,7 @@ abstract class RecipeDatabase: RoomDatabase() {
                         context.applicationContext,
                         RecipeDatabase::class.java,
                         "recipe_table"
-                    ).allowMainThreadQueries()      //todo neu
+                    ).allowMainThreadQueries()                  //erlaubt den datenbankzugriff auf dem hauptthread
                         .build()
                 }
             }

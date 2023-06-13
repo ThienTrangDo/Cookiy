@@ -25,15 +25,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     //laden livedata aus dem repository
     val recipes = repository.recipes
 
+    //ruft die met aus repository auf und gibt die liste der favoriten zurück
     fun getAllFavorites() : List<Favorite> {
         return repository.getAllFavorites()
     }
 
-    //todo neu
+    //anzahl der vorkommen des favoriten in der datenbank
     fun checkFavorite(favName: String) : Int {
         return repository.checkFavorite(favName)
     }
 
+    //rezeptdaten werden geladen, wird in einer coroutine ausgeführt um die ui nicht zu blockieren
     init {
         loadRecipe()
     }
@@ -45,8 +47,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    //todo Favorite
-
+    //Funktionen aus dem Repository um fav zu löschen oder einzufügen
     fun insertFavorite(favoriteName: String){
         viewModelScope.launch {
             repository.insertFavorite(favoriteName)

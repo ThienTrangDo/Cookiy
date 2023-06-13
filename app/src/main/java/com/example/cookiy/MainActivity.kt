@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cookiy.adapter.ItemAdapter
 import com.example.cookiy.databinding.ActivityMainBinding
 
+//'Host' für die ganzen Fragmente und verwaltet die Navigation zw den Fragmenten
 class MainActivity : AppCompatActivity() {
 
     //stellt den viewmodel zur verfügung
@@ -27,11 +28,11 @@ class MainActivity : AppCompatActivity() {
         //setzen das layout mit hilfe von binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-
-        //bottomNavbar
+        //ermöglicht die navigation
         val navHostFragment = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
         navController = navHostFragment.navController
 
+        //bottomNavbar
         val bottomNavigationView = binding.bottomNavBar
 
         setupWithNavController(bottomNavigationView, navController)

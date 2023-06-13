@@ -14,6 +14,8 @@ import com.example.cookiy.R
 import com.example.cookiy.data.datamodels.Recipe
 import com.example.cookiy.ui.HomeFragmentDirections
 
+
+//Liste von Rezepten werden in einem RecyclerView angezeigt
 class ItemAdapter(
     private val dataset: List<Recipe>
     ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>(){
@@ -46,20 +48,19 @@ class ItemAdapter(
 
         val item = dataset[position]
 
-        holder.nameTV.text = item.name
-
         val url = "https://public.syntax-institut.de/apps/batch6/Trang/images/" + item.image
 
         val imgUri = url.toUri().buildUpon().scheme("https").build()
 
+        holder.nameTV.text = item.name
+
         holder.imageView.load(imgUri)
 
+        //durch Klicken auf ein Rezept, wird es im Detailfragment aufgerufen
         holder.recipeCardview.setOnClickListener {
             holder.itemView.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.name))
         }
-
-       //todo Kategorien
     }
 }
 

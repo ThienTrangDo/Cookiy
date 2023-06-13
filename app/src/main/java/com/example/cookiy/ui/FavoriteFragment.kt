@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
 import com.example.cookiy.MainViewModel
 import com.example.cookiy.R
 import com.example.cookiy.TAG
@@ -21,10 +22,10 @@ class FavoriteFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+/*    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +39,7 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //ruft alle Fav aus der Datenbank ab, gespeichert in einer Variable
         var favorites = viewModel.getAllFavorites()
         Log.e(TAG, "ALl Favorites are get from database!")
         var favoriteNames = mutableListOf<String>()
@@ -46,11 +48,11 @@ class FavoriteFragment : Fragment() {
             favoriteNames.add(fav.recipeName)
         }
 
+        //gibt die Liste der verfügbaren Rezepten zurück
+        //filter, hier wird die liste der rezepte gefiltert, deren namen in der favoritenames liste enthalten sind
         var favoritesAsFavorite = viewModel.recipes.value!!.filter { it.name in favoriteNames  }.toMutableList()
 
         binding.rvFavorite.adapter = FavoriteAdapter(favoritesAsFavorite, viewModel)
 
     }
-
-
 }

@@ -41,8 +41,10 @@ class AppRepository (private val api: RecipeApi, private val application: Applic
         }
     }
 
-    //todo Favorite Neu
+    //Funktionen für Favoriten
 
+    //Funktion um in die Datenbank Favoriten einzufügen, mit Parameter favoriteName
+    //Objekt mit dem übergebenen Namen wird erstellt & mit insert methode des dao in die datenbank rein
     suspend fun insertFavorite(favoriteName: String){
         try {
             var favorite = Favorite(favoriteName)
@@ -52,6 +54,9 @@ class AppRepository (private val api: RecipeApi, private val application: Applic
         }
     }
 
+
+    //ebenfalls mit gleichen Parameter, wird die delete methode im dao aufgerufen um favoriten
+    //aus der datenbank zu löschen
     suspend fun deleteFavorite(favoriteName: String){
         try {
             database.recipeDatabaseDao.deleteFavorite(favoriteName)
