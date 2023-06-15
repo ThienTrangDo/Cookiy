@@ -22,7 +22,8 @@ import com.google.android.material.card.MaterialCardView
 
 class FavoriteAdapter(
     private val dataset: MutableList<Recipe>,
-    private val viewModel: MainViewModel
+    private val viewModel: MainViewModel,
+    private val navController: NavController //todo neu
 ) : RecyclerView.Adapter<FavoriteAdapter.ItemViewHolder>(){
 
     //viewholder weiß welche Teile des layouts beim recycling angepasst werden
@@ -71,11 +72,19 @@ class FavoriteAdapter(
                 .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.name))
         }
 
+        //todo neu
+        holder.recipeCardview.setOnClickListener {
+            val action = FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(item.name)
+            navController.navigate(action)
+        }
+
+
         //Favoriten Button um Rezepte aus den Favoriten zu löschen
         holder.favoriteButton.setOnClickListener {
             viewModel.deleteFavorite(item.name)
             dataset.removeAt(position)
             notifyItemChanged(position)
+            notifyItemRangeChanged(position, dataset.size)  //todo neu
         }
     }
 }
